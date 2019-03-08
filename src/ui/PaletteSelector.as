@@ -30,10 +30,14 @@ package ui {
 	import scratch.PaletteBuilder;
 
 public class PaletteSelector extends Sprite {
-
+	/* old stuff
 	private static const categories:Array = [
 		'Motion', 'Looks', 'Sound', 'Pen', 'Data', // column 1
 		'Events', 'Control', 'Sensing', 'Operators', 'More Blocks']; // column 2
+	*/ //k_mods
+	private static const categories:Array = [
+		'Data', 'Events', 'Control',  // column 1
+		'Operators', 'More Blocks']; // column 2
 
 	public var selectedCategory:int = 0;
 	private var app:Scratch;

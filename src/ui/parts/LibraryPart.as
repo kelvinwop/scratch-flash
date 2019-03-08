@@ -81,7 +81,9 @@ public class LibraryPart extends UIPart {
 		addChild(importButton = makeButton(spriteFromComputer, 'import'));
 		addChild(photoButton = makeButton(spriteFromCamera, 'camera'));
 
-		if (!app.isMicroworld) {
+		//k_mod
+		//old: if (!app.isMicroworld) {
+		if (false) {
 			addStageArea();
 			addNewBackdropButtons();
 			addVideoControl();
@@ -134,7 +136,9 @@ public class LibraryPart extends UIPart {
 		g.lineStyle(1, CSS.borderColor, 1, true);
 		g.drawRect(0, CSS.titleBarH, w, h - CSS.titleBarH);
 		g.lineStyle(1, CSS.borderColor);
-		if (!app.isMicroworld) {
+		//k_mod
+		//old: if (!app.isMicroworld) {
+		if (false) {
 			g.moveTo(stageAreaWidth, 0);
 			g.lineTo(stageAreaWidth, h);
 			g.lineStyle();
@@ -149,7 +153,9 @@ public class LibraryPart extends UIPart {
 	private function fixLayout():void {
 		var buttonY:int = 4;
 
-		if (!app.isMicroworld) {
+		//k_mod
+		//old: if (!app.isMicroworld) {
+		if (false) {
 			libraryButton.x = 380;
 			if (app.stageIsContracted) libraryButton.x = 138;
 			libraryButton.y = buttonY + 0;

@@ -1068,6 +1068,8 @@ public class Scratch extends Sprite {
 	protected function addFileMenuItems(b:*, m:Menu):void {
 		m.addItem('Load Project', runtime.selectProjectFile);
 		m.addItem('Save Project', exportProjectToFile);
+		m.addItem('Check correctness', validateCode);
+		m.addItem('Built to MQL', generateMQL);
 		if (runtime.recording || runtime.ready==ReadyLabel.COUNTDOWN || runtime.ready==ReadyLabel.READY) {
 			m.addItem('Stop Video', runtime.stopVideo);
 		} else {
@@ -1194,6 +1196,14 @@ public class Scratch extends Sprite {
 		d.addButton('Don\'t save', proceedWithoutSaving);
 		d.addButton('Cancel', cancel);
 		d.showOnStage(stage);
+	}
+
+	public function validateCode():void {
+
+	}
+
+	public function generateMQL():void {
+
 	}
 
 	public function exportProjectToFile(fromJS:Boolean = false, saveCallback:Function = null):void {

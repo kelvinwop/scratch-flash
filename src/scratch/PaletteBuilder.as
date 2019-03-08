@@ -53,8 +53,16 @@ public class PaletteBuilder {
 	}
 
 	public static function strings():Array {
+		//k_mod used to be:
+		/*
 		return [
-			'Stage selected:', 'No motion blocks',
+			'stage selected:', 'no blocks??', 
+			'Make a Block', 'Make a List', 'Make a Variable',
+			'New List', 'List name', 'New Variable', 'Variable name',
+			'New Block', 'Add an Extension'];
+			*/
+		return [
+			'Functionality not supported:', 'These blocks have been removed', 
 			'Make a Block', 'Make a List', 'Make a Variable',
 			'New List', 'List name', 'New Variable', 'Variable name',
 			'New Block', 'Add an Extension'];
@@ -138,7 +146,7 @@ public class PaletteBuilder {
 			nextY += 5;
 		}
 
-		addExtensionButtons();
+		//addExtensionButtons(); //k_mod
 		for each (var ext:* in app.extensionManager.enabledExtensions()) {
 			addExtensionSeparator(ext);
 			addBlocksForExtension(ext);

@@ -60,13 +60,13 @@ public class Specs {
 	public static const categories:Array = [
 	 // id   category name	color
 		[0,  "undefined",	0xD42828],
-		[1,  "Motion",		0x4a6cd4],
+		//[1,  "Motion",		0x4a6cd4],
 		[2,  "Looks",		0x8a55d7],
-		[3,  "Sound",		0xbb42c3],
-		[4,  "Pen",			0x0e9a6c], // Scratch 1.4: 0x009870
+		//[3,  "Sound",		0xbb42c3],
+		//[4,  "Pen",			0x0e9a6c], // Scratch 1.4: 0x009870
 		[5,  "Events",		0xc88330],
 		[6,  "Control",		0xe1a91a],
-		[7,  "Sensing",		0x2ca5e2],
+		//[7,  "Sensing",		0x2ca5e2],
 		[8,  "Operators",	0x5cb712],
 		[9,  "Data",		variableColor],
 		[10, "More Blocks",	procedureColor],
@@ -219,11 +219,11 @@ public class Specs {
 
 		// triggers
 		["when @greenFlag clicked",				"h", 5, "whenGreenFlag"],
-		["when %m.key key pressed",				"h", 5, "whenKeyPressed", 		"space"],
-		["when this sprite clicked",			"h", 5, "whenClicked"],
-		["when backdrop switches to %m.backdrop", "h", 5, "whenSceneStarts", 	"backdrop1"],
+		//["when %m.key key pressed",				"h", 5, "whenKeyPressed", 		"space"],
+		//["when this sprite clicked",			"h", 5, "whenClicked"],
+		//["when backdrop switches to %m.backdrop", "h", 5, "whenSceneStarts", 	"backdrop1"],
 		["--"],
-		["when %m.triggerSensor > %n",			"h", 5, "whenSensorGreaterThan", "loudness", 10],
+		//["when %m.triggerSensor > %n",			"h", 5, "whenSensorGreaterThan", "loudness", 10],
 		["--"],
 		["when I receive %m.broadcast",			"h", 5, "whenIReceive",			""],
 		["broadcast %m.broadcast",				" ", 5, "broadcast:",			""],
@@ -242,9 +242,9 @@ public class Specs {
 		["-"],
 		["stop %m.stop",						"f", 6, "stopScripts", "all"],
 		["-"],
-		["when I start as a clone",				"h", 6, "whenCloned"],
-		["create clone of %m.spriteOnly",		" ", 6, "createCloneOf"],
-		["delete this clone",					"f", 6, "deleteClone"],
+		//["when I start as a clone",				"h", 6, "whenCloned"],
+		//["create clone of %m.spriteOnly",		" ", 6, "createCloneOf"],
+		//["delete this clone",					"f", 6, "deleteClone"],
 		["-"],
 
 		// control - stage
