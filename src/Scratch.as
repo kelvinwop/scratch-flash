@@ -1069,8 +1069,8 @@ public class Scratch extends Sprite {
 	protected function addFileMenuItems(b:*, m:Menu):void {
 		m.addItem('Load Project', runtime.selectProjectFile);
 		m.addItem('Save Project', exportProjectToFile);
-		m.addItem('Check correctness', validateCode);
-		m.addItem('Build to MQL', generateMQL);
+		m.addItem('write json', validateCode);
+		//m.addItem('write json in zip garbage', generateMQL);
 		if (runtime.recording || runtime.ready==ReadyLabel.COUNTDOWN || runtime.ready==ReadyLabel.READY) {
 			m.addItem('Stop Video', runtime.stopVideo);
 		} else {
@@ -1203,8 +1203,10 @@ public class Scratch extends Sprite {
 	public function validateCode():void {
 		var file:FileReference = new FileReference();
 		var data:ByteArray = new ByteArray();
-		data.writeMultiByte ( "lolerlolerlolero", "utf-8" );
-		file.save( data, "myfile.txt" );
+		var d_json:String = util.JSON.stringify(stagePane);
+		data.writeMultiByte ( d_json, "utf-8" );
+		file.save( data, "myfile.json" );
+		//we gunna have to POST to something that ties it together with a python thing
 	}
 
 	public function generateMQL(fromJS:Boolean = false, saveCallback:Function = null):void {
