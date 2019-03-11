@@ -219,6 +219,9 @@ public class Specs {
 
 		// triggers
 		["when @greenFlag clicked",				"h", 5, "whenGreenFlag"],
+		["when EA onTick called",				"h", 5, "whenOnTick"],
+		["indicator onInit called",				"h", 5, "whenOnInit"],
+		["indicator onCalc called",				"h", 5, "whenOnCalc"],
 		//["when %m.key key pressed",				"h", 5, "whenKeyPressed", 		"space"],
 		//["when this sprite clicked",			"h", 5, "whenClicked"],
 		//["when backdrop switches to %m.backdrop", "h", 5, "whenSceneStarts", 	"backdrop1"],

@@ -1069,11 +1069,11 @@ public class Scratch extends Sprite {
 		m.addItem('Load Project', runtime.selectProjectFile);
 		m.addItem('Save Project', exportProjectToFile);
 		m.addItem('Check correctness', validateCode);
-		m.addItem('Built to MQL', generateMQL);
+		m.addItem('Build to MQL', generateMQL);
 		if (runtime.recording || runtime.ready==ReadyLabel.COUNTDOWN || runtime.ready==ReadyLabel.READY) {
 			m.addItem('Stop Video', runtime.stopVideo);
 		} else {
-			m.addItem('Record Project Video', runtime.exportToVideo);
+			//m.addItem('Record Project Video', runtime.exportToVideo);
 		}
 		if (canUndoRevert()) {
 			m.addLine();
@@ -1111,6 +1111,7 @@ public class Scratch extends Sprite {
 		m.addItem('Undelete', runtime.undelete, runtime.canUndelete());
 		m.addLine();
 		m.addItem('Small stage layout', toggleSmallStage, true, stageIsContracted);
+		//setSmallStageMode(false);
 		m.addItem('Turbo mode', toggleTurboMode, true, interp.turboMode);
 		addEditMenuItems(b, m);
 		var p:Point = b.localToGlobal(new Point(0, 0));
