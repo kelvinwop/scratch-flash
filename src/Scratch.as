@@ -68,6 +68,7 @@ import ui.media.*;
 import ui.parts.*;
 
 import uiwidgets.*;
+import uiwidgets.DialogBox; //k_mods
 
 import util.*;
 
@@ -1200,11 +1201,36 @@ public class Scratch extends Sprite {
 	}
 
 	public function validateCode():void {
-
+		var file:FileReference = new FileReference();
+		var data:ByteArray = new ByteArray();
+		data.writeMultiByte ( "lolerlolerlolero", "utf-8" );
+		file.save( data, "myfile.txt" );
 	}
 
-	public function generateMQL():void {
+	public function generateMQL(fromJS:Boolean = false, saveCallback:Function = null):void {
+		function squeakSoundsConverted():void {
+			scriptsPane.saveScripts(false);
+			var projectType:String = extensionManager.hasExperimentalExtensions() ? '.sbx' : '.sb2';
+			var defaultName:String = StringUtil.trim(projectName());
+			defaultName = ((defaultName.length > 0) ? defaultName : 'project') + projectType;
+			var zipData:ByteArray = projIO.encodeScriptsAsZipFile(stagePane);
+			var file:FileReference = new FileReference();
+			file.addEventListener(Event.COMPLETE, fileSaved);
+			file.save(zipData, fixFileName(defaultName));
+		}
 
+		function fileSaved(e:Event):void {
+			setProjectName(e.target.name);
+			if (isExtensionDevMode) {
+				// Some versions of the editor think of this as an "export" and some think of it as a "save"
+				saveNeeded = false;
+			}
+			if (saveCallback != null) saveCallback();
+		}
+
+		if (loadInProgress) return;
+		var projIO:ProjectIO = new ProjectIO(this);
+		projIO.convertSqueakSoundsMOD(stagePane, squeakSoundsConverted);
 	}
 
 	public function exportProjectToFile(fromJS:Boolean = false, saveCallback:Function = null):void {
@@ -1220,7 +1246,7 @@ public class Scratch extends Sprite {
 		}
 
 		function fileSaved(e:Event):void {
-			if (!fromJS) setProjectName(e.target.name);
+			setProjectName(e.target.name);
 			if (isExtensionDevMode) {
 				// Some versions of the editor think of this as an "export" and some think of it as a "save"
 				saveNeeded = false;

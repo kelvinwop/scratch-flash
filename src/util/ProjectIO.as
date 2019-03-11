@@ -92,6 +92,19 @@ public class ProjectIO {
 		return zip.endWrite();
 	}
 
+	public function encodeScriptsAsZipFile(proj:ScratchStage):ByteArray {
+		delete proj.info.penTrails; // remove the penTrails bitmap saved in some old projects' info
+		proj.savePenLayer();
+		proj.updateInfo();
+		recordImagesAndSounds(proj.allObjects(), false, proj);
+		var zip:ZipIO = new ZipIO();
+		zip.startWrite();
+		addJSONData('project.json', proj, zip);
+		//addImagesAndSounds(zip);
+		proj.clearPenLayer();
+		return zip.endWrite();
+	}
+
 	public function encodeSpriteAsZipFile(spr:ScratchSprite):ByteArray {
 		// Encode a sprite into a ByteArray. The format is a ZIP file containing
 		// the JSON sprite data and all images and sounds as files.
@@ -111,6 +124,10 @@ public class ProjectIO {
 		var jsonData:ByteArray = new ByteArray();
 		jsonData.writeUTFBytes(util.JSON.stringify(obj));
 		zip.write(fileName, jsonData, true);
+	}
+
+	public static function getJSONData(obj:*):String {
+		return util.JSON.stringify(obj);
 	}
 
 	private function addImagesAndSounds(zip:ZipIO):void {
@@ -582,6 +599,37 @@ public class ProjectIO {
 	}
 
 	public function convertSqueakSounds(scratchObj:ScratchObj, done:Function):void {
+		// Pre-convert any Squeak sounds (asynch, with a progress bar) before saving a project.
+		// Note: If this is not called before recordImagesAndSounds(), sounds will
+		// be converted synchronously, but there may be a long delay without any feedback.
+		function convertASound():void {
+			if (i < soundsToConvert.length) {
+				var sndToConvert:ScratchSound = soundsToConvert[i++] as ScratchSound;
+				sndToConvert.prepareToSave();
+				app.lp.setProgress(i / soundsToConvert.length);
+				app.lp.setInfo(sndToConvert.soundName);
+				setTimeout(convertASound, 50);
+			} else {
+				app.removeLoadProgressBox();
+				// Note: Must get user click in order to proceed with saving...
+				DialogBox.notify('', 'Sounds converted', app.stage, false, soundsConverted);
+			}
+		}
+		function soundsConverted(ignore:*):void { done() }
+		var soundsToConvert:Array = [];
+		for each (var obj:ScratchObj in scratchObj.allObjects()) {
+			for each (var snd:ScratchSound in obj.sounds) {
+				if ('squeak' == snd.format) soundsToConvert.push(snd);
+			}
+		}
+		var i:int;
+		if (soundsToConvert.length > 0) {
+			app.addLoadProgressBox('Converting sounds...');
+			setTimeout(convertASound, 50);
+		} else done();
+	}
+
+	public function convertSqueakSoundsMOD(scratchObj:ScratchObj, done:Function):void {
 		// Pre-convert any Squeak sounds (asynch, with a progress bar) before saving a project.
 		// Note: If this is not called before recordImagesAndSounds(), sounds will
 		// be converted synchronously, but there may be a long delay without any feedback.
