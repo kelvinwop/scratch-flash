@@ -221,10 +221,14 @@ public class Specs {
 		["when @greenFlag clicked",				"h", 5, "whenGreenFlag"],
 		//["when %m.key key pressed",				"h", 5, "whenKeyPressed", 		"space"],
 		//["when this sprite clicked",			"h", 5, "whenClicked"],
+		["EAonTick",							"h", 5, "whenTickCalled"],
+		["--"],
+		["INonInit",							"h", 5, "whenInitCalled"],
+		["INonCalculate",						"h", 5, "whenCalculateCalled"]
 		//["when backdrop switches to %m.backdrop", "h", 5, "whenSceneStarts", 	"backdrop1"],
 		["--"],
 		//["when %m.triggerSensor > %n",			"h", 5, "whenSensorGreaterThan", "loudness", 10],
-		["--"],
+		//["--"],
 		["when I receive %m.broadcast",			"h", 5, "whenIReceive",			""],
 		["broadcast %m.broadcast",				" ", 5, "broadcast:",			""],
 		["broadcast %m.broadcast and wait",		" ", 5, "doBroadcastAndWait",	""],
@@ -260,7 +264,7 @@ public class Specs {
 		["-"],
 		["stop %m.stop",						"f", 106, "stopScripts", "all"],
 		["-"],
-		["create clone of %m.spriteOnly",		" ", 106, "createCloneOf"],
+		//["create clone of %m.spriteOnly",		" ", 106, "createCloneOf"],
 
 		// sensing
 		["touching %m.touching?",				"b", 7, "touching:",			"_mouse_"],

@@ -1069,11 +1069,11 @@ public class Scratch extends Sprite {
 		m.addItem('Load Project', runtime.selectProjectFile);
 		m.addItem('Save Project', exportProjectToFile);
 		m.addItem('Check correctness', validateCode);
-		m.addItem('Built to MQL', generateMQL);
+		m.addItem('Build to MQL', generateMQL);
 		if (runtime.recording || runtime.ready==ReadyLabel.COUNTDOWN || runtime.ready==ReadyLabel.READY) {
 			m.addItem('Stop Video', runtime.stopVideo);
 		} else {
-			m.addItem('Record Project Video', runtime.exportToVideo);
+			//m.addItem('Record Project Video', runtime.exportToVideo);
 		}
 		if (canUndoRevert()) {
 			m.addLine();
@@ -1119,7 +1119,7 @@ public class Scratch extends Sprite {
 
 	protected function addEditMenuItems(b:*, m:Menu):void {
 		m.addLine();
-		m.addItem('Edit block colors', editBlockColors);
+		//m.addItem('Edit block colors', editBlockColors);
 	}
 
 	protected function editBlockColors():void {
@@ -1199,7 +1199,7 @@ public class Scratch extends Sprite {
 	}
 
 	public function validateCode():void {
-
+		
 	}
 
 	public function generateMQL():void {

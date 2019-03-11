@@ -44,8 +44,8 @@ public class TabsPart extends UIPart {
 		imagesTab = makeTab('Images', selectImages); // changed to 'Costumes' or 'Scenes' by refresh()
 		soundsTab = makeTab('Sounds', selectSounds);
 		addChild(scriptsTab);
-		addChild(imagesTab);
-		addChild(soundsTab);
+		//addChild(imagesTab); //k_mod
+		//addChild(soundsTab);
 		scriptsTab.turnOn();
 	}
 
